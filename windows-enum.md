@@ -10,7 +10,9 @@ net user<br />
 net localgroup Administrators<br />
 Get-ExecutionPolicy<br />
 powershell.exe -ep bypass (to set execution policy to bypass)<br />
+Get-Host | Select-Object Version (to check the whole version of powershell)<br />
 $PSVersionTable.PSVersion.Major (to check the version of powershell)
+
 
 ## About the system and proccess running:-
 systeminfo<br />
