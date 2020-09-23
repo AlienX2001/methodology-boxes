@@ -24,3 +24,18 @@ smbclient -L //"ip"<br />
 smbmap -H "ip" -L -v <br />
 
 **Note**: If smb password has been changed you can use *smbpasswd* tool to change the passwd
+
+## LDAP
+
+ldapsearch tool is used, you also require dc name. 
+
+#### To find DC name 
+
+ldapsearch -x -h <IP> -s base namingcontexts
+
+The above command will you give you the dc name.
+
+now, ldapsearch -x -h <IP> -b "dc= <name> , dc=<name>"
+
+you get information of the domains,ldap-users,password etc...
+
