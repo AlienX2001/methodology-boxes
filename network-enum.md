@@ -52,3 +52,4 @@ you get information of the domains,ldap-users,password etc...
 ## RPC
 
 rpc tool can be accessed with same credentials of smb. 
+
