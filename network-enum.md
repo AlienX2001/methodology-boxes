@@ -65,4 +65,5 @@ rpcclient -U "<Username>"
 
 setuserinfo2 <Username> <Level> <password> <br />
 
+To know more about the [rpcclient commands](https://www.samba.org/samba/docs/current/man-html/rpcclient.1.html)
 To know more about windows [user level](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-samr/6b0dff90-5ac0-429a-93aa-150334adabf6?redirectedfrom=MSDN)<br /> 
