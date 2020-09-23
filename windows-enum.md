@@ -24,7 +24,7 @@ tasklist<br />
 dir filename.extension /s (do it from C:\ folder)(supports regex)
 
 ## Unhide directories and files
-attrib -h -r -s /s /d C:\*.* (The C drive can be changed to any drive of your choice)
+* attrib -h -r -s /s /d C:\*.* (The C drive can be changed to any drive of your choice)
 * GCI alias Get-ChildItem
     1. -Recurse       - It digs deep into the child dir.           
     2. -Force or -FO  - It shows the hidden dir too. 
