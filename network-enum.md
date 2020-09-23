@@ -44,7 +44,7 @@ ldapsearch -x -h <IP> -s base namingcontexts
 
 The above command will you give you the dc name.
 
-now, ldapsearch -x -h <IP> -b "dc= <name> , dc=<name>"
+now, ldapsearch -x -h <IP> -b "dc= name, dc= name"
 
 you get information of the domains,ldap-users,password etc...
 
@@ -53,17 +53,16 @@ you get information of the domains,ldap-users,password etc...
 
 rpc tool can be accessed with same credentials of smb. 
 
-rpcclient -U "<Username>"
+rpcclient -U "Username"
 
 * enumdomusers    - To enumerate domain users
 * enumprivs       - To enumerate privileges
 * netshareenumall - To enumerate all shares
 * enumprinters    - To enumerate printers
 * setuserinfo2   - To reset the password of the user
-
-### Usage example 
-
-setuserinfo2 <Username> <Level> <password> <br />
+  
+ #### usage example:
+     setuserinfo2 <Username> <Level> <password> <br />
 
 To know more about the [rpcclient commands](https://www.samba.org/samba/docs/current/man-html/rpcclient.1.html)<br />
 To know more about windows [user level](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-samr/6b0dff90-5ac0-429a-93aa-150334adabf6?redirectedfrom=MSDN)<br /> 
