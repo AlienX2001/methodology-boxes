@@ -31,6 +31,9 @@ crackmap smb <IP> --shares - Prints the shares
 
 **Note**: Sometime you can specify blank username and password, to check if there are any shares. which u don't enum with above commands
 
+crackmap smb <IP> -u " " -p " " 
+
+
 ## LDAP
 
 ldapsearch tool is used, you also require dc name. 
@@ -48,3 +51,4 @@ you get information of the domains,ldap-users,password etc...
 
 ## RPC
 
+rpc tool can be accessed with same credentials of smb. 
