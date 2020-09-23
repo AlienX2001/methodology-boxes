@@ -25,10 +25,21 @@ dir filename.extension /s (do it from C:\ folder)(supports regex)
 
 ## Unhide directories and files
 attrib -h -r -s /s /d C:\*.* (The C drive can be changed to any drive of your choice)
+* GCI alias Get-ChildItem
+    1. -Recurse       - It digs deep into the child dir.           
+    2. -Force or -FO  - It shows the hidden dir too. 
+    #### usage example 
+        gci c:/ -recurse -force 
+<br />
 
 ## To Download somthing from the internet or intranet:-
 powershell.exe -command (New-Object System.Net.Webclient).DownloadFile("http://ip address/domain:port/file","download location's full path\programname.extension")<br />
 powershell Invoke-Webrequest -OutFile 'Dstn path.Extension' -Uri http://ip address/domain:port/file
+
+**Note**: 
+    curl too works in powershell, except for windows-IoT and similar minimal installations <br />
+#### usage example:
+    curl http://<IP>:<PORT>/file_name > Output_filename     
 
 ## Decrypting Powershell SecureString (ONLY WORKS WHEN YOU ARE THE OWNER OF THE XML FILE)
 ### If you have a xml object file
