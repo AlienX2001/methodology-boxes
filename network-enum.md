@@ -22,3 +22,5 @@ check in the configuration files that public and private key authentication is a
 enum4linux -a -d -v "ip"<br />
 smbclient -L //"ip"<br />
 smbmap -H "ip" -L -v <br />
+
+**Note**: If smb password has been changed you can use *smbpasswd* tool to change the passwd

