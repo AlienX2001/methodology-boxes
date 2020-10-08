@@ -9,3 +9,4 @@
 - Try to go deep enough and see if you have permissions to read/write or execute any of the following files which are invoked via certain actions which are done as suid by default (such as invoking login shells since those are by default run by root)
 - If you are in special groups or groups u dont know about then better to google to get what all things you can do/access with that group and leverage them
 - Also check for any outdated software which you have access to (which includes stuff like the linux kernel or even sudo!![If you have the required permissions to access sudo or you have required permissions to read/write or execute any file as any other user...maybe root])
+- Check if you have any permissions to run any program as root and then try hijacking any function of any module in use 
