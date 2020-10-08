@@ -4,7 +4,7 @@
 - look at all the proccess and see if you can leverage any of them
 - u can use the inbuilt tools like ps (ps aux) or tools like pspy, etc. to have a look 
 - u can also have a look at the services which u found in the nmap scan but havent really used it for anything
-## now lets start with in depth steps to exploit the services I have encountered till now (WARNING!!:- These may contain spoilers to some active htb boxes, proccees on your own risk)
+## now lets start with in depth steps to exploit the services I have encountered till now (WARNING!!:- These may contain spoilers to some active htb boxes, proceed on your own risk)
 - Check if root has copied any files from an sensitive location to backups or logs via pspy tool and read them and research about it via google (or any search engine of your choice)
 - Try to go deep enough and see if you have permissions to read/write or execute any of the following files which are invoked via certain actions which are done as suid by default (such as invoking login shells since those are by default run by root)
 - If you are in special groups or groups u dont know about then better to google to get what all things you can do/access with that group and leverage them
