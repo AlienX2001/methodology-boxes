@@ -22,5 +22,12 @@ check in the configuration files that public and private key authentication is a
 enum4linux -a -d -v "ip"<br />
 smbclient -L //"ip"<br />
 smbmap -H "ip" -L -v <br />
-
 **Note**: If smb password has been changed you can use *smbpasswd* tool to change the passwd
+
+## smtp
+
+try connecting it via telnet and then do the following:-
+- VRFY "email address"
+and then refer this https://en.wikipedia.org/wiki/List_of_SMTP_server_return_codes for the return codes
+- try sending mail to everyone in your mailing list by maliciosly crafting your content from which they can connect back to you (via http)[no need to setup an http server] and listen for any reply responses via netcat (basics of phishing!!)
+
