@@ -88,7 +88,7 @@ find / -writable ! -user "user" -type f ! -path "/proc/*" ! -path "/sys/*" 2>/de
 find / -executable ! -user "user" -type f ! -path "/proc/*" ! -path "/sys/*" 2>/dev/null (executable rights)<br />
 find / -user root -perm -4000 2>/dev/null (for getting setuid files)<br />
 find / -user root -perm -2000 2>/dev/null (for getting all setgid files)<br />
-find / \( -name "id_dsa*" -o -name "id_rsa*" -o -name "known_hosts" -o -name "authorized_hosts" -o -name "authorized_keys" \) 2>/dev/null  (to get ssh info)<br />
+find / -name "id_dsa*" -o -name "id_rsa*" -o -name "known_hosts" -o -name "authorized_hosts" -o -name "authorized_keys" 2>/dev/null  (to get ssh info)<br />
 
 ## To download something from the internet or from intranet:-
 
