@@ -9,3 +9,6 @@
 6. We try uploading a php reverse shell and executing it via a browser and hence finally get a shell
 ### notes
 1. To make a python package we need only a setup.py in a folder and build a pkg by running "python3 setup.py sdist bdist_wheel" and then uploading it by following this link https://pypi.org/project/pypiserver/#upload-with-setuptools (ofc this is only for our malicious paylaod.....to make a proper python package follow this link)
+## time
+### notes
+1. To have a look at what type of content is parsed and how it is parsed by the website (in this case content was treated as json objects[by the error code we received]) like this if we can identify this then we can try to leverage it to get rce/ce 
