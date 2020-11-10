@@ -12,6 +12,80 @@
 - Check if you have any permissions to run any program as root and then try hijacking any function of any module in use 
 ## priv esc via sudo -l
 If you have any of the permission listed to below to run as root then you can follow the steps to get a priv esc
-1. npm:- npm is a package manager for the JavaScript programming language. It is the default package manager for the JavaScript runtime environment Node.js. A malicious package, Son, is created which contains prerequisite script to run. The npm command is run with “–unsafe-perm”
+1. npm:- npm is a package manager for the JavaScript programming language. It is the default package manager for the JavaScript runtime environment Node.js. A malicious package is created which contains prerequisite script to run. The npm command is run with “–unsafe-perm”
 
 ![](https://hakin9.org/wp-content/uploads/2018/09/image37.png)
+
+2. pip:- Pip (Python package installer) is used to install Python packages as several packages are required to be installed with elevated privileges. This can be exploited with malicious Python package or setup.py script.
+
+![](https://hakin9.org/wp-content/uploads/2018/09/image41.png)
+
+and then execute pip install .
+
+![](https://hakin9.org/wp-content/uploads/2018/09/image40.png)
+
+and listen in netcat to get shell
+
+![](https://hakin9.org/wp-content/uploads/2018/09/image43.png)
+
+3. find:- Find command is used to find files. Find command run as sudo can be exploited with -exec argument.
+
+![](https://hakin9.org/wp-content/uploads/2018/09/image42.png)
+
+4. mount:- Mount command is used to mount drives. Mount command run as sudo can be used to spawn shell and escalate the privilege.
+
+![](https://hakin9.org/wp-content/uploads/2018/09/image46.png)
+![](https://hakin9.org/wp-content/uploads/2018/09/image45.png)
+
+5. man:- The Man command is used for viewing manual pages for a command. Running a man command using SUDO can be exploited and a shell can be spawned.
+
+![](https://hakin9.org/wp-content/uploads/2018/09/image49.png)
+![](https://hakin9.org/wp-content/uploads/2018/09/image47.png)
+
+6. awk:- AWK is a programming language designed for text processing and typically used as a data extraction and reporting tool. AWK run on SUDO can be exploited as below.
+
+![](https://hakin9.org/wp-content/uploads/2018/09/image48.png)
+
+7. nmap:- Nmap is program used for scanning ports and services. NMAP run as sudo can be exploited with lua online script and saved as .nse.
+
+![](https://hakin9.org/wp-content/uploads/2018/09/image50.png)
+
+8. wget:- Wget is a command used to download files. Get running on SUDO can be exploited as follows.
+ 
+![](https://hakin9.org/wp-content/uploads/2018/09/image51.png)
+![](https://hakin9.org/wp-content/uploads/2018/09/image52.png)
+ 
+Also, Wget can be used to replace file with -O argument. 
+9.  gdb:- GDB (Gnu Debugger) is a command used to debug applications. GDB run with SUDO can be exploited as follows.
+
+![](https://hakin9.org/wp-content/uploads/2018/09/image53.png)
+
+10. vi:- Vi is text editor.vi used as SUDO can be used to spawn shell and elevate privilege.
+
+When vi is opened type “:” which will make it in command mode then type "!/bin/bash"
+
+![](https://hakin9.org/wp-content/uploads/2018/09/image54.png)
+
+11. ftp:- FTP command is used as FTP client to connect to FTP. FTP with sudo permission can be exploited as below.
+
+![](https://hakin9.org/wp-content/uploads/2018/09/image55.png)
+
+12. less:- Less command is used to view contents of a file.
+
+Running with SUDO privileges can be exploited as below.
+When less is opened type “!/bin/bash” since it is already in command mode 
+![](https://hakin9.org/wp-content/uploads/2018/09/image56.png)
+
+13. more:- More command is also similar to less command used to view the contents of the file. More command running with SUDO privileges can be used to spawn an elevated shell.
+
+![](https://hakin9.org/wp-content/uploads/2018/09/image57.png)
+
+14. tar:- tar is generally used to compress or decompress files
+
+![](https://hakin9.org/wp-content/uploads/2018/09/image28.png)
+
+15. composer:- composer is used to install, update and run php frameworks and projects and stuff
+
+![](https://hakin9.org/wp-content/uploads/2018/09/image30.jpeg)
+![](https://hakin9.org/wp-content/uploads/2018/09/image31.jpeg)
+ 
