@@ -39,12 +39,14 @@ Find command is used to find files. Find command run as sudo can be exploited wi
 Mount command is used to mount drives. Mount command run as sudo can be used to spawn shell and escalate the privilege.
 
 ![](https://hakin9.org/wp-content/uploads/2018/09/image46.png)
+
 ![](https://hakin9.org/wp-content/uploads/2018/09/image45.png)
 
 ### 5. man:-
 The Man command is used for viewing manual pages for a command. Running a man command using SUDO can be exploited and a shell can be spawned.
 
 ![](https://hakin9.org/wp-content/uploads/2018/09/image49.png)
+
 ![](https://hakin9.org/wp-content/uploads/2018/09/image47.png)
 
 ### 6. awk:-
@@ -61,6 +63,7 @@ Nmap is program used for scanning ports and services. NMAP run as sudo can be ex
 Wget is a command used to download files. Get running on SUDO can be exploited as follows.
  
 ![](https://hakin9.org/wp-content/uploads/2018/09/image51.png)
+
 ![](https://hakin9.org/wp-content/uploads/2018/09/image52.png)
  
 Also, Wget can be used to replace file with -O argument. 
@@ -102,5 +105,6 @@ tar is generally used to compress or decompress files
 composer is used to install, update and run php frameworks and projects and stuff
 
 ![](https://hakin9.org/wp-content/uploads/2018/09/image30.jpeg)
+
 ![](https://hakin9.org/wp-content/uploads/2018/09/image31.jpeg)
  
