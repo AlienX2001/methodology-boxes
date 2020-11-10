@@ -10,3 +10,7 @@
 - If you are in special groups or groups u dont know about then better to google to get what all things you can do/access with that group and leverage them
 - Also check for any outdated software which you have access to (which includes stuff like the linux kernel or even sudo!![If you have the required permissions to access sudo or you have required permissions to read/write or execute any file as any other user...maybe root])
 - Check if you have any permissions to run any program as root and then try hijacking any function of any module in use 
+## priv esc via sudo -l
+If you have any of the permission listed to below to run as root then you can follow the steps to get a priv esc
+1. npm:- npm is a package manager for the JavaScript programming language. It is the default package manager for the JavaScript runtime environment Node.js. A malicious package, Son, is created which contains prerequisite script to run. The npm command is run with “–unsafe-perm”
+![](https://hakin9.org/wp-content/uploads/2018/09/image37.png)
