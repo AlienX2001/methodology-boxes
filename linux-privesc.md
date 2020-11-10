@@ -13,4 +13,5 @@
 ## priv esc via sudo -l
 If you have any of the permission listed to below to run as root then you can follow the steps to get a priv esc
 1. npm:- npm is a package manager for the JavaScript programming language. It is the default package manager for the JavaScript runtime environment Node.js. A malicious package, Son, is created which contains prerequisite script to run. The npm command is run with “–unsafe-perm”
+
 ![](https://hakin9.org/wp-content/uploads/2018/09/image37.png)
