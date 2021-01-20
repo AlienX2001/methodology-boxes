@@ -9,6 +9,8 @@
 6. We try uploading a php reverse shell and executing it via a browser and hence finally get a shell
 ### notes
 1. To make a python package we need only a setup.py in a folder and build a pkg by running "python3 setup.py sdist bdist_wheel" and then uploading it by following this link https://pypi.org/project/pypiserver/#upload-with-setuptools (ofc this is only for our malicious paylaod.....to make a proper python package follow this link)
+2. If PHP gets a serialized object directly from user controlled input then it can be leveraged by using an object of the class exisitng in the source code, changing the variables for our intention and then serialize it to make a payload which can be passed so as to get our untrusted unsanitized input in the server which can also be leveraged to get code exec
+3. If while creating a support ticket for any online issue we either get a unique support email address or anything which gives away that the inbox of the support mail might be connected to the support ticket, then the newly generated support mail can be leveraged to impersonate as an already exisitng internal user on any server/platform, which can further be levreaged to get any internal information resulting in major info disclosure or possible entry to internal user only interaces, like admin panel, etc.
 ## time
 ### notes
 1. To have a look at what type of content is parsed and how it is parsed by the website (in this case content was treated as json objects[by the error code we received]) like this if we can identify this then we can try to leverage it to get rce/ce 
