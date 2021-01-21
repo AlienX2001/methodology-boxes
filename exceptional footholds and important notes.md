@@ -16,7 +16,10 @@
 1. To have a look at what type of content is parsed and how it is parsed by the website (in this case content was treated as json objects[by the error code we received]) like this if we can identify this then we can try to leverage it to get rce/ce 
 
 ## tenet
-
 ### notes
 1. If PHP gets a serialized object directly from user controlled input then it can be leveraged by using an object of the class exisitng in the source code, changing the variables for our intention and then serialize it to make a payload which can be passed so as to get our untrusted unsanitized input in the server which can also be leveraged to get code exec
 2. If while creating a support ticket for any online issue we either get a unique support email address or anything which gives away that the inbox of the support mail might be connected to the support ticket, then the newly generated support mail can be leveraged to impersonate as an already exisitng internal user on any server/platform, which can further be levreaged to get any internal information resulting in major info disclosure or possible entry to internal user only interaces, like admin panel, etc.
+
+## academy
+### notes
+1. If we have the adm group then it means we can check logs and even audit logs, and retrieving sensitive info here is an article https://www.redsiege.com/blog/2019/05/logging-passwords-on-linux/
