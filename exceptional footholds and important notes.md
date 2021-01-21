@@ -30,3 +30,9 @@
 ## delivery
 ### notes
 1. If while creating a support ticket for any online issue we either get a unique support email address or anything which gives away that the inbox of the support mail might be connected to the support ticket, then the newly generated support mail can be leveraged to impersonate as an already exisitng internal user on any server/platform, which can further be levreaged to get any internal information resulting in major info disclosure or possible entry to internal user only interaces, like admin panel, etc.
+
+## luanne
+### notes
+1. bozotic http server which is default http server of open bsd has a vuln which only locks the html root folder's index.html, users can access any existing file by mentioning it in the URL
+2. It also has a feature according to which if the -u flag enabled then it transforms URL which contain URL/~user/ to URL/~user/public_html
+3. It also has a feature that if -X flag is enabled, it enables directory listing of the whole folder when the index.html is not present
