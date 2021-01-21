@@ -23,3 +23,7 @@
 ## academy
 ### notes
 1. If we have the adm group then it means we can check logs and even audit logs, and retrieving sensitive info here is an article https://www.redsiege.com/blog/2019/05/logging-passwords-on-linux/
+
+## buff
+### notes
+1. If we cant somehow send data to some service due to lack of software then we can use a tunnel or reverse tunnel to tunnel the data through one machine to the other
