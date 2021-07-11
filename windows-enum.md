@@ -30,6 +30,7 @@ tasklist<br />
 
 ## Locate files in the whole drive
 dir filename.extension /s (do it from C:\ folder)(supports regex)
+dir /a /q (linux like ls -la, gives time modified as well as file owner)
 
 ## Unhide directories and files
 * attrib -h -r -s /s /d C:\*.* (The C drive can be changed to any drive of your choice)
