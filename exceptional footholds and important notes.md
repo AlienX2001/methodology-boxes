@@ -36,3 +36,6 @@
 1. bozotic http server which is default http server of open bsd has a vuln which only locks the html root folder's index.html, users can access any existing file by mentioning it in the URL
 2. It also has a feature according to which if the -u flag enabled then it transforms URL which contain URL/~user/ to URL/~user/public_html
 3. It also has a feature that if -X flag is enabled, it enables directory listing of the whole folder when the index.html is not present
+
+## proper
+1. The sql parameters were dyanamic in nature (first time encountering dyanamic params) hence used --eval with sqlmap. It evaluates python 1 liner thereby changing payloads dyanamically. We can refer to the parameters directly in the 1 liner.
