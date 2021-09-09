@@ -12,13 +12,15 @@ So, in order to get usernames we can use rpcclient to enumerate groups and users
 * `enumprinters` to enumerate printers
 * `setuserinfo2` to reset the password of the user
 
+If with these means we do not get usernames then we need to recon the web app or need to adopt other means of getting usernames
+
 After we do get list of usernames, we can make a wordlist out of it and use GETNPUsers.py from impacket to get TGT's of the users having the misconfig using `GETNPUsers.py DOMAIN NAME -dc-ip DOMAIN CONTROLLER IP -no-pass -userfile WORDLIST`
 
 Then after getting TGT's we try to crack them to get clear text passwords which we can use to get a shell through either winrm, ssh or whatever services enable us to
 
 ## Second
 We transfer sharphound exe to our victim. Sharphound is a data collector tool for bloodhound. Bloodhound is a visualizer of the AD network and enables us to analyze it better.
-If we are using evilwinrm then no need to an external binary, there is already a command in the evilwinrm for dumping the zip for bloodhound, we can find that by using `menu` on the evilwinrm shell.
+If we are using evilwinrm then after loading sharphound in the powershell session, we can find the command by using `menu` on the evilwinrm shell, which is `Invoke-Bloodhound`.
 
 After transfering the zip to our machine we can import the zip to bloodhound which will make us a graph of the network and will also graph the permissions, groups, everything. It even gives us hints as to what to exploit to reach what target.
 
