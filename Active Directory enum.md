@@ -12,6 +12,9 @@ So, in order to get usernames we can use rpcclient to enumerate groups and users
 * `netshareenumall` to enumerate all shares
 * `enumprinters` to enumerate printers
 * `setuserinfo2` to reset the password of the user
+* `lsaquery` to get domain SID
+* `querydominfo` to get information on the domain
+* `lsaenumsid` to get SID's of users
 
 If with these means we do not get usernames then we need to recon the web app or need to adopt other means of getting usernames
 
