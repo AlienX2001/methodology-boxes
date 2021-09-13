@@ -23,15 +23,22 @@ After we do get list of usernames, we can make a wordlist out of it and use GETN
 Then after getting TGT's we try to crack them to get clear text passwords which we can use to get a shell through either winrm, ssh or whatever services enable us to
 
 ## Second
-We transfer sharphound exe to our victim. Sharphound is a data collector tool for bloodhound. Bloodhound is a visualizer of the AD network and enables us to analyze it better.
+We transfer sharphound.exe to our victim. Sharphound is a data collector tool(ingestor) for bloodhound. Bloodhound is a visualizer of the AD network and enables us to analyze it better.
 If we are using evilwinrm then after loading sharphound in the powershell session, we can find the command by using `menu` on the evilwinrm shell, which is `Invoke-Bloodhound`.
+
+Another way of getting a bloodhound ingestor to work is remotely through bloodhound-python package which needs credentials of the user. The python script can be found here https://github.com/fox-it/BloodHound.py.
 
 After transfering the zip to our machine we can import the zip to bloodhound which will make us a graph of the network and will also graph the permissions, groups, everything. It even gives us hints as to what to exploit to reach what target.
 
 ## Third
+Check for any ServicePrinicipalNames(SPNs) of other users from which we can extract a kerberos silver ticket and then try cracking it to get credentials. To get SPNs and silver ticket we need the following command `GetUserSPNs.py -request -dc-ip DomainControllerIP Domain/Username:Password`.
+
+## Fourth
 If the Link says MemberOf, then we can disregard it, why? we can read that using right clicking on the link.
 
 If the Link says GenericAll, then we can just add the group to our user by simply doing `net group "GROUP NAME" USERNAME /add /domain` and get the elevated perms given to the group we just added ourselves to
+
+### WriteDacl
 
 If the Link says WriteDacl and the abuse info says that we can do a dcsync attack then we can simply type this oneliner `Add-DomainGroupMember -Identity 'GROUP NAME' -Members USERNAME; $username = "HOSTNAME\USERNAME"; $password = "PASSWORD"; $secstr = New-Object -TypeName System.Security.SecureString; $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)}; $cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $username, $secstr; Add-DomainObjectAcl -Credential $Cred -PrincipalIdentity 'USERNAME' -TargetIdentity 'DOMAINNAME\Domain Admins' -Rights DCSync`.
 
