@@ -7,6 +7,7 @@ We can find number of machines in the DOMAIN and their IP addresses using dig an
 If a user in the AD setting has the setting "Do not require Kerberos preauthentication" or UF_DONT_REQUIRE_PREAUTH set to true and we have its username then we can ask the kdc for a TGT which is encrpyted with the user's NTLM hash, which we can then crack in offline mode to get the user's password.
 So, in order to get usernames we can use rpcclient to enumerate groups and users in the domain using a null rpc session using `rpcclient -U "" -N IP` and then doing
 * `enumdomusers` for enumerating users 
+* `queryuser RID` to query information about the user having the RID
 * `enumdomgroups` to enumerate groups
 * `enumprivs` to enumerate privileges
 * `netshareenumall` to enumerate all shares
