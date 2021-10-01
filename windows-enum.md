@@ -32,13 +32,9 @@ tasklist<br />
 dir filename.extension /s (do it from C:\ folder)(supports regex)
 dir /a /q (linux like ls -la, gives time modified as well as file owner)
 
-## Unhide directories and files
-* attrib -h -r -s /s /d C:\*.* (The C drive can be changed to any drive of your choice)
-* GCI alias Get-ChildItem
-    1. -Recurse       - It digs deep into the child dir.           
-    2. -Force or -FO  - It shows the hidden dir too. 
-    #### usage example 
-        gci c:/ -recurse -force 
+## Show all folders and files including hidden ones
+* `dir /a` - For cmd.exe
+* `dir -force` - For powershell.exe
 <br />
 
 ## To Download somthing from the internet or intranet:-
