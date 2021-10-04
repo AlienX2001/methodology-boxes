@@ -44,7 +44,7 @@ powershell Invoke-Webrequest -OutFile 'Dstn path.Extension' -Uri http://ip addre
 **Note**: 
     curl too works in powershell, except for windows-IoT and similar minimal installations <br />
 #### usage example:
-    curl http://<IP>:<PORT>/file_name > Output_filename     
+    curl http://<IP>:<PORT>/file_name -Output Output_filename     
 
 ## Decrypting Powershell SecureString (ONLY WORKS WHEN YOU ARE THE OWNER OF THE XML FILE)
 ### If you have a xml object file
