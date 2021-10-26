@@ -44,3 +44,7 @@
 ### notes
 1. We can even change password of a user account in an AD environment without an OS shell if our current user has sufficient permissions with the use of rpc using `net rpc <TARGET USERNAME> -W <DOMAIN> -U <CURRENT USER> -S <SERVERIP>`.
 2. If we dont have a password for an account but we have their NTLM hash then we can use impacket's smbclient.py to get in through smb using `smbclient.py <DOMAIN>/<USERNAME>@IP -hashes 00000000000000000000000000000000:<NTLM HASH> -dc-ip <DOMAIN CONTROLLER IP>`. This types of attack using only NTLM hash is called PassTheHash attack
+
+## explore
+### notes
+1. With adb enabled, we can easily escalalte privelages to root by doing the following `adb connect <IP>:<PORT usually 5555 for adb>` then `adb shell` and if it says more than 1 device then `adb devices`, it will list all the devices then `adb -s <device name, could be some random ascii or some IP:PORT> shell` and then simply `su root`.
