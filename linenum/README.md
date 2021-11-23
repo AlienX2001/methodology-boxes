@@ -1,3 +1,6 @@
+## enumerate about a process using directory traversal
+If we have an unknown service on a port exposed, and have a directory traversal bug, then we can use /proc/sched_debug to get PID's to all the running processes, then from that we can make an educated guess so as to what service it can be, then we can use /proc/PID/cmdline to cross check more on this here https://www.netspi.com/blog/technical/web-application-penetration-testing/directory-traversal-file-inclusion-proc-file-system/
+
 ## getting a reverse shell:-
 ### Try using netcat as follows:-
 1. on your attacker machine set up a listener by:- `nc -lvp "port"`
