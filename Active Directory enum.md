@@ -23,6 +23,8 @@ After we do get list of usernames, we can make a wordlist out of it and use GETN
 
 Then after getting TGT's we try to crack them to get clear text passwords which we can use to get a shell through either winrm, ssh or whatever services enable us to
 
+If we do not get any TGT's, but instead get a password then we can user kerbrute to check bruteforce usernames with the passwords with the kdc or we can even use crackmapexec in different modes like, smb to see if we can get any hits on any usernames. The syntax should be as follows `crackmapexec smb 'IP ADDRESS HERE' -u 'USER WORDLIST HERE' -p 'PASSWORD HERE'`
+
 ## Second
 We transfer sharphound.exe to our victim. Sharphound is a data collector tool(ingestor) for bloodhound. Bloodhound is a visualizer of the AD network and enables us to analyze it better.
 If we are using evilwinrm then after loading sharphound in the powershell session, we can find the command by using `menu` on the evilwinrm shell, which is `Invoke-Bloodhound`.
