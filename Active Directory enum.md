@@ -29,7 +29,7 @@ If we do not get any TGT's, but instead get a password then we can user kerbrute
 We transfer sharphound.exe to our victim. Sharphound is a data collector tool(ingestor) for bloodhound. Bloodhound is a visualizer of the AD network and enables us to analyze it better.
 If we are using evilwinrm then after loading sharphound in the powershell session, we can find the command by using `menu` on the evilwinrm shell, which is `Invoke-Bloodhound`.
 
-Another way of getting a bloodhound ingestor to work is remotely through bloodhound-python package which needs credentials of the user. The python script can be found here https://github.com/fox-it/BloodHound.py.
+Another way of getting a bloodhound ingestor to work is remotely through bloodhound-python package which needs credentials of the user. The python script can be found here https://github.com/fox-it/BloodHound.py, via the following command `bloodhound-python -u "USERNAME@DOMAIN" -p PASSWORD -c All -d "DOMAIN NAME" -dc "DOMAIN CONTROLLER NAME" -ns "NAME SERVER IP" --zip`.
 
 After transfering the zip to our machine we can import the zip to bloodhound which will make us a graph of the network and will also graph the permissions, groups, everything. It even gives us hints as to what to exploit to reach what target.
 
