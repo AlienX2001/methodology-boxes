@@ -39,7 +39,7 @@ Check for any ServicePrinicipalNames(SPNs) of other users from which we can extr
 ## Fourth
 If the Link says MemberOf, then we can disregard it, why? we can read that using right clicking on the link.
 
-### GenericAll
+### GenericWrite (GenericAll)
 If the Link says GenericAll, then we can just add the group to our user by simply doing `net group "GROUP NAME" USERNAME /add /domain` and get the elevated perms given to the group we just added ourselves to
 
 ### WriteDacl
