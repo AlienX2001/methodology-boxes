@@ -17,6 +17,12 @@ So, in order to get usernames we can use rpcclient to enumerate groups and users
 * `querydominfo` to get information on the domain
 * `lsaenumsid` to get SID's of users
 
+One more way is by enumerating objects is by using ldap search via using `ldapsearch -x -b "DC=cascade,DC=local" -H ldap://10.10.10.182 -D "DC=cascade,DC=local" -W "objectclass=*"` and to enumerate only user objects (any type of accounts) we use `ldapsearch -x -b "DC=cascade,DC=local" -H ldap://10.10.10.182 -D "DC=cascade,DC=local" -W "objectclass=user"`
+```
+Sometimes LDAP searches might password hashes, very rare but possible
+```
+So to look out for them, grep for terms like `pwd, Pwd, PWD, pass, Pass, PASS, password, Password, PASSWORD, key, Key, KEY`
+
 If with these means we do not get usernames then we need to recon the web app or need to adopt other means of getting usernames
 
 After we do get list of usernames, we can make a wordlist out of it and use GETNPUsers.py from impacket to get TGT's of the users having the misconfig using `GETNPUsers.py DOMAIN NAME -dc-ip DOMAIN CONTROLLER IP -no-pass -userfile WORDLIST`
