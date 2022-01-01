@@ -19,7 +19,7 @@ So, in order to get usernames we can use rpcclient to enumerate groups and users
 
 One more way is by enumerating objects is by using ldap search via using `ldapsearch -x -b "DC=cascade,DC=local" -H ldap://10.10.10.182 -D "DC=cascade,DC=local" -W "objectclass=*"` and to enumerate only user objects (any type of accounts) we use `ldapsearch -x -b "DC=cascade,DC=local" -H ldap://10.10.10.182 -D "DC=cascade,DC=local" -W "objectclass=user"`
 ```
-Sometimes LDAP searches might password hashes, very rare but possible
+Sometimes LDAP searches might dump password hashes, very rare but possible
 ```
 So to look out for them, grep for terms like `pwd, Pwd, PWD, pass, Pass, PASS, password, Password, PASSWORD, key, Key, KEY`
 
