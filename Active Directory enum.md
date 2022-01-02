@@ -62,6 +62,8 @@ If our owned user(AD object) has ReadGMSAPassword privelage for a GMSA(Group Man
 
 Then following https://medium.com/r3d-buck3t/escalating-privileges-with-dnsadmins-group-active-directory-6f7adbc7005b and https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/from-dnsadmins-to-system-to-domain-compromise we can make a custom dll (not using msfvenom since ), link here https://github.com/AlienX2001/DnsAdmin-to-System-exploit, and by changing the IP and port again build the project with release, if it says that it cant run, thats ok, nothing to worry about, simply transfer it to your kali machine and using a SMB server, probably the one given with impacket, load it into the registry with the method given in ired team link (not tranfering to machine here, since 1. as soon as it touches the disk of victim windows machine, the AV will scream at us or during the transfer the dll might get corrupted) and then restart the dns server following the above links to get reverse shell.
 
+### If we have AD recycle bin group
+Then following this https://book.hacktricks.xyz/windows/active-directory-methodology/privileged-accounts-and-token-privileges#ad-recycle-bin we see that we can read deleted objects via `Get-ADObject -filter 'isDeleted -eq $true' -includeDeletedObjects -Properties *`, which might contain some juicy stuff
 ## Lastly
 The 2nd part of the golden ticket will be the hash required for a pass the hash attack, which we may use to get access via evilwinrm or we might try to crack it, to get cleartext passwords
 
