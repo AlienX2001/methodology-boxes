@@ -48,3 +48,7 @@
 ## explore
 ### notes
 1. With adb enabled, we can easily escalalte privelages to root by doing the following `adb connect <IP>:<PORT usually 5555 for adb>` then `adb shell` and if it says more than 1 device then `adb devices`, it will list all the devices then `adb -s <device name, could be some random ascii or some IP:PORT> shell` and then simply `su root`.
+
+## reel
+### notes
+1. Always check metadata of files downloaded from any source like ftp, smb, etc. like this `exiftool "filename here"`.
