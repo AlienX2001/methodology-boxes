@@ -52,3 +52,4 @@
 ## reel
 ### notes
 1. Always check metadata of files downloaded from any source like ftp, smb, etc. like this `exiftool "filename here"`.
+2. HTA apps are html applications which are ran as "fully trusted app" meaning browser restrictions dont apply on them, no sandbox, nothing. They are native to IE, but can also be accessed by mshta.exe so it can be used to to get a client side RCE
