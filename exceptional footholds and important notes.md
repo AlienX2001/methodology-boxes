@@ -42,7 +42,7 @@
 
 ## blackfield
 ### notes
-1. We can even change password of a user account in an AD environment without an OS shell if our current user has sufficient permissions with the use of rpc using `net rpc <TARGET USERNAME> -W <DOMAIN> -U <CURRENT USER> -S <SERVERIP>`.
+1. We can even change password of a user account in an AD environment without an OS shell if our current user has sufficient permissions with the use of rpc using `net rpc <TARGET USERNAME> -W <DOMAIN> -U <CURRENT USER> -S <SERVERIP>` or using rpclient as follows `setuserinfo2 "TARGET USER" 23 "NEW PASSWORD"`
 2. If we dont have a password for an account but we have their NTLM hash then we can use impacket's smbclient.py to get in through smb using `smbclient.py <DOMAIN>/<USERNAME>@IP -hashes 00000000000000000000000000000000:<NTLM HASH> -dc-ip <DOMAIN CONTROLLER IP>`. This types of attack using only NTLM hash is called PassTheHash attack
 
 ## explore
