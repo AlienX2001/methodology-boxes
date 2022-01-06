@@ -15,7 +15,9 @@ So, in order to get usernames we can use rpcclient to enumerate groups and users
 * `setuserinfo2` to reset the password of the user
 * `lsaquery` to get domain SID
 * `querydominfo` to get information on the domain
-* `lsaenumsid` to get SID's of users
+* `lsaenumsid` to get list of SID's of users
+* `lookupnames "USERNAME HERE"` to get the SID of the particular username
+* `lookupsids "SID HERE"`to get the username of the particular SID
 
 One more way is by enumerating objects is by using ldap search via using `ldapsearch -x -b "DC=cascade,DC=local" -H ldap://10.10.10.182 -D "DC=cascade,DC=local" -W "objectclass=*"` and to enumerate only user objects (any type of accounts) we use `ldapsearch -x -b "DC=cascade,DC=local" -H ldap://10.10.10.182 -D "DC=cascade,DC=local" -W "objectclass=user"`
 ```
