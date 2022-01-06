@@ -101,7 +101,7 @@ Then we use robocopy to copy the ntds from E drive to a place we can write using
 After that simply transfer both ntds.dit and the FILENAME you just saved into your kali machine, and use secretsdump of impacket to decrypt the ntds and get the hashes of all users, using the following `secretsdump.py LOCAL -ntds ntds.dit -system "FILENAME OF THE SYSTEM HIVE IN PREVIOUS STEP"`
 
 ## Lastly
-With a golden ticket we can authenticate to any service, hence we can get smb sessions too using impacket's smbclient.py using `smbclient.py -no-pass -k -dc-ip "DC IP" "FQDN(Fully Qualified Domain Name or simply the Domain Name)"`
+With a golden ticket we can authenticate to any service, hence we can get smb sessions too using impacket's smbclient.py using `smbclient.py -no-pass -k -dc-ip "DC IP" "FQDN(Fully Qualified Domain Name or simply the Domain Name)"` and get a shell using impacket's psexec.py using `psexec.py -no-pass -k -dc-ip "DC IP" "FQDN(Fully Qualified Domain Name or simply the Domain Name)"`.
 
 The 2nd part of the golden ticket will be the hash required for a pass the hash attack, which we may use to get access via evilwinrm or we might try to crack it, to get cleartext passwords
 
