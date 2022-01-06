@@ -101,6 +101,8 @@ Then we use robocopy to copy the ntds from E drive to a place we can write using
 After that simply transfer both ntds.dit and the FILENAME you just saved into your kali machine, and use secretsdump of impacket to decrypt the ntds and get the hashes of all users, using the following `secretsdump.py LOCAL -ntds ntds.dit -system "FILENAME OF THE SYSTEM HIVE IN PREVIOUS STEP"`
 
 ## Lastly
+With a golden ticket we can authenticate to any service, hence we can get smb sessions too using impacket's smbclient.py using `smbclient.py -no-pass -k -dc-ip "DC IP" "FQDN(Fully Qualified Domain Name or simply the Domain Name)"`
+
 The 2nd part of the golden ticket will be the hash required for a pass the hash attack, which we may use to get access via evilwinrm or we might try to crack it, to get cleartext passwords
 
 If we have own a service which has some delegation to the DC then we can forge a silver ticket with that user's NT HASH and impersonate any user on the DC for the partcular SPN which the user has rights to. For that we can make a silver ticket by the following `ticketer.py <TARGET USER> -nthash <NT HASH OF USER> -domain <DOMAIN NAME> -user <CURRENT USER> -domain-sid <DOMAIN SID> -spn <SERVICE/DOMAIN>`. We can get the domain sid by `lookupsid.py '<WORKGROUP/USERNAME:PASSWORD@DOMAIN NAME>`'. After that we export the ticket as follows `export KRB5CCNAME=SOMETHING.ccache`. Now we have our environment ready to use this silver ticket to authenticate to the server by impersonating other user on DC.
