@@ -108,3 +108,7 @@ If it is allowed then we can install any .msi file with system privelages so now
 ## Checking any remaing sticky keys
 
 Sometimes users do put stuff in sticky keys which is stored in C:\Users\USER\AppData\Local\Packages\Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe\LocalState
+
+## We can get ntlm hash of users via write access to a directory
+
+If we have write access to any folder, using ftp, smb, etc. then we can upload a .scf file and follow https://pentestlab.blog/2017/12/13/smb-share-scf-file-attacks/ this link in order to steal hash of any user who opens the directory containg the scf file
