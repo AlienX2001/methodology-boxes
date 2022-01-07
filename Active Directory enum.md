@@ -45,7 +45,7 @@ Another way of getting a bloodhound ingestor to work is remotely through bloodho
 After transfering the zip to our machine we can import the zip to bloodhound which will make us a graph of the network and will also graph the permissions, groups, everything. It even gives us hints as to what to exploit to reach what target.
 
 ## Third
-Check for any ServicePrinicipalNames(SPNs) of other users from which we can extract a kerberos silver ticket and then try cracking it to get credentials. To get SPNs and silver ticket we need the following command `GetUserSPNs.py -request -dc-ip DomainControllerIP Domain/Username:Password`.
+Check for any ServicePrinicipalNames(SPNs) of other users from which we can extract a kerberos silver ticket and then try cracking it to get credentials. To get SPNs and silver ticket we need the following command `GetUserSPNs.py -request -dc-ip DomainControllerIP Domain/Username:Password` but if kerberos is firewalled then we can't obtain the ticket like this so we need a shell on the machine for that. After getting the shell, we can use rubeus.exe to get the silver ticket using the following `Rubeus.exe kerberoast /creduser:DOMAINNAME\USERNAME /credpassword:PASSWORD /nowrap`.
 
 ## Fourth
 If the Link says MemberOf, then we can disregard it, why? we can read that using right clicking on the link.
