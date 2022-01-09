@@ -3,6 +3,9 @@
 - using winpeas look for files/folders owned by system and we also have perms to read/write or execute refer to winpeas docs for the full form of codes displayed by winpeas over files/folders
 - we can leverage services which create proccess with system privs and hence get a system shell
 
+## If we need to enable all privs listed in a cmd shell session then we can follow these tweets and repos
+https://twitter.com/0gtweet/status/1479813175046516738?t=x-BDnA-QT9hQ2eIbEw4P8g&s=19 and https://github.com/gtworek/PSBits/tree/master/EnableAllParentPrivileges
+
 ## escalation through certain privs
 ### SeBackupPrivilege and SeRestorePrivilege
 If we have these 2 privs then what we can do is, we can create a backup of the C drive into some other drive of our choice(E drive here), this will also result in forming the backup of the C:\windows\ntds which we can use along with the master key extracted from system registry hive to decrypt the ntds file to get hashes of all users on that machine.
