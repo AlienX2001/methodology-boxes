@@ -65,6 +65,7 @@ $o = 0
 [System.Runtime.InteropServices.Marshal]::Copy($ret, 0, $asbAddress, $ret.Length)
 [Native]::VirtualProtect($asbAddress, [uint32]$ret.Length, $o, [ref] $null)
 ```
+To list all the directories excluded by win defender, we can simply query a register using `reg query "HKLM\SOFTWARE\Microsoft\Windows Defender\Exclusions /s"`
 
 ## Locate files in the whole drive
 `dir filename.extension /s` (do it from C:\ folder)(supports regex)
