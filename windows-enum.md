@@ -1,3 +1,7 @@
+## about RID's
+The RID of a group can be used to extract the SID of the group, if we have the RID then disregarding the last 8 characters(last 4 bytes) in the RID(hex format) we can get the SID of the group(in hex)
+To get the RID of a user we can take it's individual ID(500 for administrator, rest are random but will be till 10500) then convert it to hex, making 0x14f, padding it to 4 bytes making it 0x0000014f, inverting it making it 0xf4100000 and then appending it with the SID of the group to get the RID of the user
+
 ## exploiting UNC paths to get NTLM hash
 To get NTLM hashes are to somehow get an authenticated connection back to us, there by giving us hashes
 1. One of of doing it is to somehow upload .scf files to the machine. SCF files are command files which containt very limited amount of windows explorer commands, which does not need any user interaction, and gets executed the moment a user opens the directory which contains the .scf file. So hence we can specify a UNC path to connect to and set up an smb server using responder, this will give us the NTLM hashes, because given a UNC path, windows thinks that it needs to authenticate to the remote machine, thereby giving away its hash. This attack was also prevelant in .lnk(shortcuts) files but was patched. More on this here https://pentestlab.blog/2017/12/13/smb-share-scf-file-attacks/
