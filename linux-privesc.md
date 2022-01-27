@@ -111,3 +111,5 @@ composer is used to install, update and run php frameworks and projects and stuf
 
 ![](https://hakin9.org/wp-content/uploads/2018/09/image31.jpeg)
  
+ ### 16. Any binary which has a user dependent config file like bashrc, zshrc, or in our case wgetrc can be invoked as root
+ If the given is true then we can make an .wgetrc(can be any rc file) and take control of the execution, since usually rc files are executed first before the program does our intended task in order to setup the environment, but this can be abused to get privesc
