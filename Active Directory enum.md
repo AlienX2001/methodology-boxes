@@ -30,7 +30,7 @@ So to look out for them, grep for terms like `pwd, Pwd, PWD, pass, Pass, PASS, p
 
 If with these means we do not get usernames then we need to recon the web app or need to adopt other means of getting usernames
 
-After we do get list of usernames, we can make a wordlist out of it and use GETNPUsers.py from impacket to get TGT's of the users having the misconfig using `GETNPUsers.py DOMAIN NAME -dc-ip DOMAIN CONTROLLER IP -no-pass -userfile WORDLIST`
+After we do get list of usernames, we can make a wordlist out of it and use GETNPUsers.py from impacket to get TGT's of the users having the misconfig using `GetNPUsers.py "DOMAIN NAME/" -dc-ip "DOMAIN CONTROLLER IP" -no-pass -userfile WORDLIST`
 
 Then after getting TGT's we try to crack them to get clear text passwords which we can use to get a shell through either winrm, ssh or whatever services enable us to
 
