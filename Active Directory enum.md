@@ -76,6 +76,8 @@ $cred = ConvertTo-SecureString "SOME SECURE PASSWORD HERE" -AsPlainText -Force
 Set-DomainUserPassword -Identity "TARGET USER" -AccountPassword $cred
 ```
 
+We can also reset the password using rpc by logging in to RPC with the account having the perm and then doing as follow `setuserinfo2 'TARGET USERNAME' 23 'NEW PASSWORD` and after that simply log on to the new user using the new password
+
 ### ReadGMSAPassword
 
 If our owned user(AD object) has ReadGMSAPassword privelage for a GMSA(Group Managed Service Account), then usually its a high value target, due to as follows https://cube0x0.github.io/Relaying-for-gMSA/, so understanding this article, we see sometimes the GMSA is usually granted more rights than what it needs, hence it is in our best interest to own them. The article describes on how to do it if you have a shell with the account. But in intelligence from htb, we didnt have shell, so we used ldapsearch to gain info on it, using the following syntax `ldapsearch -x -b "DISTINGUISHED NAME OF THE TARGET GMSA RETRIEVED FROM BLOODHOUND" -H "ldap://DC IP" -D "DISTINGUISHED NAME OF THE OWNED ACCOUNT WHICH HAS THE RIGHTS" -w "PASSWORD OF THE OWNED ACCOUNT" "objectclass=*"`. and do get NT password hash we can use the gmsadump.py which can be found here https://github.com/micahvandeusen/gMSADumper, via the following command `python3 gmsadumper.py -u 'USERNAME' -p 'PASSWORD' -d <DOMAIN CONTROLLER DOMAIN NAME(NOT IP)>`.
