@@ -69,6 +69,11 @@ sudo --version (to check the version and see if it is vulnerable to any exploit)
 `mysqladmin -uroot version 2>/dev/null` (to check if no pass works)<br />
 `psql -V 2>/dev/null` (to check the version of postgresql if installed to check for any known vulnerabilities)<br />
 
+## about services(daemons) running:-
+
+`systemctl list-units --type=service` (to list all services active or not)
+We can also check in /etc/init.d/ to check for any daemons which run after init(systemd) essentially all startup services
+
 ## about users:-
 
 cat /etc/passwd 2>/dev/null<br />
