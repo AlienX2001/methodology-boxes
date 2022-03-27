@@ -28,6 +28,7 @@ powershell.exe
 `powershell.exe -ep bypass` (to set execution policy to bypass)<br />
 `Get-Host | Select-Object Version` (to check the whole version of powershell)<br />
 `$PSVersionTable.PSVersion.Major` (to check the version of powershell)
+`type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt` (to read the powershell history of the user)
 
 
 ## About the system and proccess running:-
