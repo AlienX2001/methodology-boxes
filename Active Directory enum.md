@@ -119,6 +119,8 @@ The 2nd part of the golden ticket will be the hash required for a pass the hash 
 
 If we have own a service which has some delegation to the DC then we can forge a silver ticket with that user's NT HASH and impersonate any user on the DC for the partcular SPN which the user has rights to. For that we can make a silver ticket by the following `ticketer.py <TARGET USER> -nthash <NT HASH OF USER> -domain <DOMAIN NAME> -user <CURRENT USER> -domain-sid <DOMAIN SID> -spn <SERVICE/DOMAIN>`. We can get the domain sid by `lookupsid.py '<WORKGROUP/USERNAME:PASSWORD@DOMAIN NAME>`'. After that we export the ticket as follows `export KRB5CCNAME=SOMETHING.ccache`. Now we have our environment ready to use this silver ticket to authenticate to the server by impersonating other user on DC.
 
+If we have a DA account then we can basically pivot to any domain joined machine using psexec, as it uses SMB and all domain joined machines should have their SMB open
+
 ## Note
 1. Earlier there was something called as Group Policy Preferences in windows AD which enabled administrators to easily change settings, credentials, etc. using a GPP, but the service which was used had its credentials stored in an xml file in the SYSVOL directory in `\DOMAIN\Policies\{SOME UUID CODE idk what}\MACHINE\Preference\Groups` called Groups.xml. But the credentials were stored in clear text only encryped with an AES 32 byte key, but the bug was that the SYSVOL share was world readable for all the users in the domain, hence anyone could get the encrypted password, crack it and get privelages. Hence this service was disabled by microsoft in 2014 in its advisory ms14-025, but old systems still might have them.
 
