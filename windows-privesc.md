@@ -1,8 +1,6 @@
 ### TODO:
-1. Learn how to make exe's using windows.h
-2. Learn how to make DLL's https://www.youtube.com/watch?v=3eROsG_WNpE&t=25s https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/dll-hijacking#your-own
-3. Learn how to manipulate process memory using windows API and try to implement https://github.com/AlienX2001/PSBits/tree/master/EnableAllParentPrivileges
-4. Implementing https://daniels-it-blog.blogspot.com/2020/07/uac-bypass-via-dll-hijacking-and-mock.html?m=1
+1. Learn how to manipulate process memory using windows API and try to implement https://github.com/AlienX2001/PSBits/tree/master/EnableAllParentPrivileges
+2. Implementing https://daniels-it-blog.blogspot.com/2020/07/uac-bypass-via-dll-hijacking-and-mock.html?m=1
 
 ## usually you just find services worth exploiting and then exploit them do priv esc but for a reference and as a compilation of my past experiences here is the notes
 - first enumerate and gather all info
