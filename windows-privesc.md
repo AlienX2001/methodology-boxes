@@ -1,6 +1,7 @@
 ### TODO:
-1. Learn how to manipulate process memory using windows API and try to implement https://github.com/AlienX2001/PSBits/tree/master/EnableAllParentPrivileges
-2. Implementing https://daniels-it-blog.blogspot.com/2020/07/uac-bypass-via-dll-hijacking-and-mock.html?m=1
+1. To make a DLL proxying tool, which generates proxied DLL to the specified DLL
+2. Learn how to manipulate process memory using windows API and try to implement https://github.com/AlienX2001/PSBits/tree/master/EnableAllParentPrivileges
+3. Implementing https://daniels-it-blog.blogspot.com/2020/07/uac-bypass-via-dll-hijacking-and-mock.html?m=1
 
 ## usually you just find services worth exploiting and then exploit them do priv esc but for a reference and as a compilation of my past experiences here is the notes
 - first enumerate and gather all info
