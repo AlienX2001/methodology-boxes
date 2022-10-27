@@ -1,5 +1,7 @@
 ## First and foremost
 
+Firstly, if we get a clockskew too great for any kerberos operation we can synchornize our system's clock with that of the DC using `sudo ntpdate SERVER IP`
+
 We can get read/write acls from smb shares like how we do in a normal windows shell, using smbcacls and if we can write to a directory we know someone will access, then we can steal their ntlm hash by upload a malicious scf file, and when someone accesses the folder containing the scf file, we will get the user's NTLM hash in responder
 
 To start enumerating the active directory forest we need to have some kind of shell in the network, which can be claimed by any means. Web, SSH, etc.
