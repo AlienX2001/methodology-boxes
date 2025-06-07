@@ -125,6 +125,9 @@ end backupX
 Then we use robocopy to copy the ntds from E drive to a place we can write using `robocopy /b E:\Windows\ntds . ntds.dit`. Then we save the system hive which has the master key used to decrypt the ntds using `reg save hklm\system "FILENAME"`.
 After that simply transfer both ntds.dit and the FILENAME you just saved into your kali machine, and use secretsdump of impacket to decrypt the ntds and get the hashes of all users, using the following `secretsdump.py LOCAL -ntds ntds.dit -system "FILENAME OF THE SYSTEM HIVE IN PREVIOUS STEP"`
 
+### If we can manipulate Certs(possibly by being the Certs Publisher or other related groups)
+If we can manipulate certs in anyway, then we can use Certipy https://github.com/ly4k/Certipy to enumarate any potential attack vectors through ADCS. There are around 16 Escalation vectors.
+
 ## Lastly
 With a golden ticket we can authenticate to any service, hence we can get smb sessions too using impacket's smbclient.py using `smbclient.py -no-pass -k -dc-ip "DC IP" "FQDN(Fully Qualified Domain Name or simply the Domain Name)"` and get a shell using impacket's psexec.py using `psexec.py -no-pass -k -dc-ip "DC IP" "FQDN(Fully Qualified Domain Name or simply the Domain Name)"`.
 
